@@ -55,7 +55,7 @@ class ProductDetailsFragment : Fragment() {
         }else{
             binding.btnLike.setImageResource(R.drawable.ic_baseline_favorite_border_24)
         }
-
+        binding.btnAddToCart.text = product?.addToCartButtonText
         binding.btnLike.setOnClickListener {
             (activity as MainActivity).getViewModel().markProductAsFav(arguments?.getInt("index",0)!!)
             product = (activity as MainActivity).getViewModel().getProduct(arguments?.getInt("index",0)!!)
