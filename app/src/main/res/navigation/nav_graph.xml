@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation android:id="@+id/nav_graph"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
     app:startDestination="@id/productListFragment">
+
 
     <fragment
         android:id="@+id/productListFragment"
-        android:name="com.bhavesh.favproductassignment.ProductListFragment"
-        android:label="fragment_product_list"
-        tools:layout="@layout/fragment_product_list" >
+        android:name="com.bhavesh.favproductassignment.ui.ProductListFragment"
+        android:label="ProductListFragment"
+        tools:layout="@layout/fragment_product_list">
         <action
             android:id="@+id/action_productListFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
-        <action
-            android:id="@+id/action_productListFragment_to_favProductListFragment"
-            app:destination="@id/favProductListFragment" />
     </fragment>
     <fragment
-        android:id="@+id/productDetailsFragment"
-        android:name="com.bhavesh.favproductassignment.ProductDetailsFragment"
-        android:label="fragment_product_details"
-        tools:layout="@layout/fragment_product_details" />
-    <fragment
         android:id="@+id/favProductListFragment"
-        android:name="com.bhavesh.favproductassignment.FavProductListFragment"
-        android:label="fragment_fav_product_list"
-        tools:layout="@layout/fragment_fav_product_list" >
+        android:name="com.bhavesh.favproductassignment.ui.FavProductListFragment"
+        android:label="FavProductListFragment"
+        tools:layout="@layout/fragment_fav_product_list"
+        >
         <action
             android:id="@+id/action_favProductListFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.bhavesh.favproductassignment.ui.ProductDetailsFragment"
+        android:label="ProductDetailsFragment"
+        tools:layout="@layout/fragment_product_details"
+        />
 </navigation>

@@ -1,0 +1,93 @@
+package com.bhavesh.favproductassignment.ui
+
+import android.os.Bundle
+import android.view.*
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
+import com.bhavesh.favproductassignment.MainActivity
+import com.bhavesh.favproductassignment.R
+import com.bhavesh.favproductassignment.databinding.FragmentProductDetailsBinding
+import com.bhavesh.favproductassignment.model.Product
+import com.bumptech.glide.Glide
+
+class ProductDetailsFragment : Fragment() {
+    private lateinit var binding : FragmentProductDetailsBinding
+    private var product : Product? = null
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
+        setupMenu()
+        init()
+        return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        (activity as MainActivity).title = "Product Detail"
+        (activity as MainActivity).setBackButton(true)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as MainActivity).setBackButton(false)
+    }
+
+
+
+    private fun init() {
+
+        product = (activity as MainActivity).getViewModel().getProduct(arguments?.getInt("index",0)!!)
+        setLike()
+        Glide.with(binding.imageView.context).asBitmap().load(product?.imageURL).into(binding.imageView)
+        binding.txtProductName.text = product?.title
+        binding.txtMrp.text = binding.txtMrp.context.getString(R.string.rupees).plus(product?.saleUnitPrice)
+        if(product?.ratingCount == 0.0){
+            binding.txtProductRatingBarProduct.rating = 3.7.toFloat()
+            binding.txtProductRatingUserCount.text = product?.ratingCount.toString().plus(" [").plus(product?.totalReviewCount).plus(" Users]")
+        }else {
+            binding.txtProductRatingBarProduct.rating = product?.ratingCount?.toFloat() ?: 0F
+            binding.txtProductRatingUserCount.text = product?.ratingCount.toString().plus(" [").plus(product?.totalReviewCount).plus(" Users]")
+        }
+        if(product?.isInWishlist!!){
+            binding.btnLike.setImageResource(R.drawable.ic_baseline_favorite_24)
+        }else{
+            binding.btnLike.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+        }
+
+        binding.btnLike.setOnClickListener {
+            (activity as MainActivity).getViewModel().markProductAsFav(arguments?.getInt("index",0)!!)
+            product = (activity as MainActivity).getViewModel().getProduct(arguments?.getInt("index",0)!!)
+            setLike()
+        }
+    }
+   private fun setLike(){
+        if(product?.isInWishlist!!){
+            binding.btnLike.setImageResource(R.drawable.ic_baseline_favorite_24)
+        }else{
+            binding.btnLike.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+        }
+    }
+
+
+    private fun setupMenu() {
+        (requireActivity() as MenuHost).addMenuProvider(object : MenuProvider {
+            override fun onPrepareMenu(menu: Menu) {
+                // Handle for example visibility of menu items
+            }
+
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                //menuInflater.inflate(R.menu.menu, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                // Validate and handle the selected menu item
+                if(menuItem.itemId == android.R.id.home){
+                    findNavController().navigateUp()
+                }
+                return true
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+    }
+}

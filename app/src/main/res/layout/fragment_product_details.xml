@@ -1,16 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools">
+    
+
+
+<androidx.core.widget.NestedScrollView
+    android:id="@+id/nestedScrollView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ProductDetailsFragment">
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:orientation="vertical"
+    tools:context=".ui.ProductDetailsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/product_details_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        
 
-</FrameLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp">
+
+           
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtProductName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/black" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatRatingBar
+                        android:id="@+id/txtProductRatingBarProduct"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:rating="4.5"
+                        android:scaleX="1"
+                        android:scaleY="1"
+                        android:transformPivotX="0dp"
+                        android:transformPivotY="0dp" />
+
+                    <TextView
+                        android:id="@+id/txtProductRatingUserCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:textSize="11sp"
+                        android:fontFamily="@font/roboto_light"
+                        android:textColor="@color/black" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/relLike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="5dp"
+                android:background="@drawable/round_shape"
+                android:elevation="1dp">
+
+                <ImageButton
+                    android:id="@+id/btnLike"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:background="#00000000"
+                    android:contentDescription="@string/todo"
+                    android:src="@drawable/ic_baseline_favorite_border_24_gray"
+                    tools:ignore="DuplicateSpeakableTextCheck" />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@string/todo"
+                android:padding="5dp"
+                app:srcCompat="@drawable/ic_baseline_image_150"
+                tools:ignore="ImageContrastCheck" />
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="14dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="14dp">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtPercentage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="10dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textColor="#b00020"
+                        android:textSize="12sp"
+                        tools:text="%" />
+
+                    <TextView
+                        android:id="@+id/txtPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"/>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/roboto_light"
+                        android:text="@string/mrp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/txtMrp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/roboto_light"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="22sp" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+           
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@android:color/darker_gray" />
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linShopping"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAddToCart"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="#D81B60"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:padding="5dp"
+                android:text="@string/add_to_cart"
+                android:textSize="12sp"
+                app:backgroundTint="#D81B60"
+                app:cornerRadius="20dp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.core.widget.NestedScrollView>
 </layout>

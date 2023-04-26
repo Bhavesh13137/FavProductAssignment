@@ -6,4 +6,15 @@
     <string name="product_fragment">Product Fragment</string>
     <string name="product_details_fragment">Product Details Fragment</string>
     <string name="fav_product_fragment">Fav Product Fragment</string>
+    <string name="todo">Todo</string>
+
+    <string name="zero_rupees">\u20B90.00</string>
+    <string name="count">10</string>
+    <string name="rupees">\u20B9</string>
+    <string name="mrp">MRP</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="product_details">Product Details</string>
+    <string name="rating">Rating</string>
+    <string name="buy_now">Buy Now</string>
+    <string name="favorite_item">Favorite Item</string>
 </resources>
