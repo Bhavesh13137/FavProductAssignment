@@ -1,5 +1,5 @@
-# FavProductAssignment
-## MVVM, Dagger, Navigation Component, DataBinding
+## FavProductAssignment
+# MVVM, Dagger 2, Navigation Component, DataBinding
 
 <a href="url"><img src="https://user-images.githubusercontent.com/131846090/234671625-765133ad-d630-4617-8051-77d8bb99a22e.png" align="left" height="280" width="150" ></a>
 
