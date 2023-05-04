@@ -24,7 +24,7 @@ class FavProductListFragment : Fragment() , FavProductAdapter.OnClickListener{
     private val adapter : FavProductAdapter = FavProductAdapter(this)
     @Inject
     lateinit var viewModelFactory: ProductViewModelFactory
-    lateinit var viewModel : ProductViewModel
+    private lateinit var viewModel : ProductViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentFavProductListBinding.inflate(inflater, container, false)

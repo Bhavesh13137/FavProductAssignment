@@ -23,7 +23,7 @@ class ProductDetailsFragment : Fragment() {
     private var product : Product? = null
     @Inject
     lateinit var viewModelFactory: ProductViewModelFactory
-    lateinit var viewModel : ProductViewModel
+    private lateinit var viewModel : ProductViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
         setupMenu()
@@ -45,13 +45,10 @@ class ProductDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (requireActivity().application as App).getAppComponent().inject(this)
-
         init()
-
     }
 
     private fun init() {
-
         viewModel = ViewModelProvider(requireActivity(),viewModelFactory)[ProductViewModel::class.java]
         product = viewModel.getProduct(arguments?.getInt("id",0)!!)
         setLike()

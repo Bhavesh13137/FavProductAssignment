@@ -25,7 +25,7 @@ class ProductListFragment : Fragment() , ProductAdapter.OnClickListener{
     private val adapter : ProductAdapter = ProductAdapter(this)
     @Inject
     lateinit var viewModelFactory: ProductViewModelFactory
-    lateinit var viewModel : ProductViewModel
+    private lateinit var viewModel : ProductViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         Log.e("ProductListFragment","444")
         binding = FragmentProductListBinding.inflate(inflater, container, false)
@@ -34,20 +34,9 @@ class ProductListFragment : Fragment() , ProductAdapter.OnClickListener{
         return binding.root
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        Log.e("ProductListFragment","111")
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.e("ProductListFragment","222")
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (requireActivity().application as App).getAppComponent().inject(this)
-
         viewModel = ViewModelProvider(requireActivity(),viewModelFactory)[ProductViewModel::class.java]
         initView()
 
@@ -59,7 +48,6 @@ class ProductListFragment : Fragment() , ProductAdapter.OnClickListener{
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = adapter
         (activity as MainActivity).showNewProgress()
-        //viewModel = ViewModelProvider(requireActivity(),productViewModelFactory)[ProductViewModel::class.java]
         viewModel.productLiveData.observe(viewLifecycleOwner) {
             adapter.setList(it)
             (activity as MainActivity).hideNewProgress()
@@ -68,7 +56,6 @@ class ProductListFragment : Fragment() , ProductAdapter.OnClickListener{
 
     override fun onStart() {
         super.onStart()
-        Log.e("ProductListFragment","666")
         (activity as MainActivity).title = "Product List"
         (activity as MainActivity).setBackButton(false)
     }
