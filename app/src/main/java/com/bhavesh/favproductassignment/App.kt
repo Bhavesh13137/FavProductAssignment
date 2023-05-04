@@ -4,15 +4,18 @@ import android.app.Application
 import com.bhavesh.favproductassignment.di.AppComponent
 import com.bhavesh.favproductassignment.di.DaggerAppComponent
 
-
 class App : Application(){
 
-    lateinit var appComponent: AppComponent
+    private lateinit var appComponent: AppComponent
 
     override fun onCreate() {
         super.onCreate()
-        appComponent = DaggerAppComponent.factory().create(this)
 
+        appComponent = DaggerAppComponent.builder().build()
+    }
+
+    fun getAppComponent() : AppComponent {
+        return appComponent
     }
 
 }

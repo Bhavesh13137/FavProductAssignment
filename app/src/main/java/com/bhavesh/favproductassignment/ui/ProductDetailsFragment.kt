@@ -6,20 +6,28 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.bhavesh.favproductassignment.App
 import com.bhavesh.favproductassignment.MainActivity
 import com.bhavesh.favproductassignment.R
 import com.bhavesh.favproductassignment.databinding.FragmentProductDetailsBinding
 import com.bhavesh.favproductassignment.model.Product
+import com.bhavesh.favproductassignment.view_model.ProductViewModel
+import com.bhavesh.favproductassignment.view_model.ProductViewModelFactory
 import com.bumptech.glide.Glide
+import javax.inject.Inject
 
 class ProductDetailsFragment : Fragment() {
     private lateinit var binding : FragmentProductDetailsBinding
     private var product : Product? = null
+    @Inject
+    lateinit var viewModelFactory: ProductViewModelFactory
+    lateinit var viewModel : ProductViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
         setupMenu()
-        init()
+
         return binding.root
     }
 
@@ -34,11 +42,18 @@ class ProductDetailsFragment : Fragment() {
         (activity as MainActivity).setBackButton(false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (requireActivity().application as App).getAppComponent().inject(this)
 
+        init()
+
+    }
 
     private fun init() {
 
-        product = (activity as MainActivity).getViewModel().getProduct(arguments?.getInt("index",0)!!)
+        viewModel = ViewModelProvider(requireActivity(),viewModelFactory)[ProductViewModel::class.java]
+        product = viewModel.getProduct(arguments?.getInt("id",0)!!)
         setLike()
         Glide.with(binding.imageView.context).asBitmap().load(product?.imageURL).into(binding.imageView)
         binding.txtProductName.text = product?.title
@@ -57,8 +72,8 @@ class ProductDetailsFragment : Fragment() {
         }
         binding.btnAddToCart.text = product?.addToCartButtonText
         binding.btnLike.setOnClickListener {
-            (activity as MainActivity).getViewModel().markProductAsFav(arguments?.getInt("index",0)!!)
-            product = (activity as MainActivity).getViewModel().getProduct(arguments?.getInt("index",0)!!)
+            product = viewModel.getProduct(arguments?.getInt("id",0)!!)
+            viewModel.markProductAsFav(product!!)
             setLike()
         }
     }

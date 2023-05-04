@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.bhavesh.favproductassignment.model.Product
 import com.bhavesh.favproductassignment.repository.ProductRepository
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class ProductViewModel(private val repository: ProductRepository) : ViewModel() {
 
@@ -21,15 +22,33 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
         }
     }
 
-    fun markProductAsFav(pos : Int) {
+    fun markProductAsFav(model: Product) {
         viewModelScope.launch {
-            repository.markProductAsFav(pos)
+            repository.markProductAsFav(model)
+        }
+    }
+
+    fun markProductAsFav(pos : Int, model: Product) {
+        viewModelScope.launch {
+            repository.markProductAsFav(pos,model)
+        }
+    }
+
+    fun markProductDelete(pos : Int, model: Product) {
+        viewModelScope.launch {
+            repository.markProductDelete(pos,model)
         }
     }
 
 
     fun getProduct(pos : Int) : Product?{
         return repository.getProduct(pos)
+    }
+
+    fun getFavProduct(){
+        viewModelScope.launch {
+            repository.getFavProduct()
+        }
     }
 
 
