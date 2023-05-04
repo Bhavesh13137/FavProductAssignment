@@ -23,7 +23,7 @@ class ProductDetailsFragment : Fragment() {
     private var product : Product? = null
     @Inject
     lateinit var viewModelFactory: ProductViewModelFactory
-    lateinit var viewModel : ProductViewModel
+    private lateinit var viewModel : ProductViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
         setupMenu()

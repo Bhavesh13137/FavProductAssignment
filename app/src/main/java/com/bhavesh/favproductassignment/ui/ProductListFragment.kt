@@ -25,7 +25,7 @@ class ProductListFragment : Fragment() , ProductAdapter.OnClickListener{
     private val adapter : ProductAdapter = ProductAdapter(this)
     @Inject
     lateinit var viewModelFactory: ProductViewModelFactory
-    lateinit var viewModel : ProductViewModel
+    private lateinit var viewModel : ProductViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         Log.e("ProductListFragment","444")
         binding = FragmentProductListBinding.inflate(inflater, container, false)
