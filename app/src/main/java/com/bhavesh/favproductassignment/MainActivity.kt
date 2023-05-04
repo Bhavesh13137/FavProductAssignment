@@ -20,12 +20,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: ProductViewModel
     private lateinit var progressBar : ProgressBar
     private lateinit var bottomNavigationView : BottomNavigationView
-    @Inject
-    lateinit var productViewModelFactory: ProductViewModelFactory
+//    @Inject
+//    lateinit var productViewModelFactory: ProductViewModelFactory
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (application as App).appComponent.inject(this)
-        viewModel = ViewModelProvider(this,productViewModelFactory)[ProductViewModel::class.java]
+
+        //viewModel = ViewModelProvider(this,productViewModelFactory)[ProductViewModel::class.java]
         setContentView(R.layout.activity_main)
         init()
     }
